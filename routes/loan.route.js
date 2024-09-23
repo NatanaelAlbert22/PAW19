@@ -1,6 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const loanController = require('../controllers/loan.controller');
+const {createLoan,getAllLoans,getLoanById} = require('../controllers/loan.controller');
 
 // Create a new loan
-router.post('/', loanController.createLoan);
+router.post('/post', createLoan);
+
+// Read the data
+// GET all loans
+router.get('/readloan', getAllLoans);
+
+// GET loan by ID
+router.get('/readloan/:id', getLoanById);
+
+module.exports = router;

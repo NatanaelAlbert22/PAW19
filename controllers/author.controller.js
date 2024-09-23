@@ -1,4 +1,4 @@
-const Author = require('../models/author.models');
+exports.Author = require('../models/author.models');
 
 // Create a new author
 exports.createAuthor = async (req, res) => {
@@ -10,3 +10,32 @@ exports.createAuthor = async (req, res) => {
         res.status(400).json({ message: error.message });
     }
 };
+
+// Read the data
+
+
+// Get all authors
+exports.getAllAuthors = async (req, res) => {
+    try {
+        const authors = await Author.find().populate('books');
+        res.json(authors);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
+// Get author by ID
+exports.getAuthorById = async (req, res) => {
+    try {
+        const author = await Author.findById(req.params.id).populate('books');
+        if (!author) return res.status(404).json({ message: 'Author not found' });
+        res.json(author);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
+
+
+
+

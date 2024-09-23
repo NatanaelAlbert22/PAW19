@@ -19,14 +19,16 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 const PORT = process.env.PORT || 3001;
-
-
+app.use('/author', AuthorRoute); 
+app.use('/book', BookRoute); 
+app.use('/loan', LoanRoute); 
+app.use('/member', MemberRoute); 
 app.get('/', function (req, res) {
     res.send('Hello Server Is UP!!')
   })
 
   mongoose
-  .connect('mongodb+srv://rakhel0806:<PASSWORDDDD>@library.xeqcf.mongodb.net/PAWPAWPAW?retryWrites=true&w=majority&appName=Library')
+  .connect('mongodb+srv://rakhel0806:iGxwP20IBQVddLSl@library.xeqcf.mongodb.net/PAWPAWPAW?retryWrites=true&w=majority&appName=Library')
   .then(() => {
     console.log("Connected to database!");
     app.listen(PORT, () => {

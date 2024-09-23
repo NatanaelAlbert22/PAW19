@@ -10,3 +10,29 @@ exports.createBook = async (req, res) => {
         res.status(400).json({ message: error.message });
     }
 };
+
+// Read the data
+
+// Get all books
+exports.getAllBooks = async (req, res) => {
+    try {
+        const books = await Book.find().populate('author');
+        res.json(books);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
+// Get book by ID
+exports.getBookById = async (req, res) => {
+    try {
+        const book = await Book.findById(req.params.id).populate('author');
+        if (!book) return res.status(404).json({ message: 'Book not found' });
+        res.json(book);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
+
+
