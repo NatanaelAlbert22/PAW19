@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {createAuthor, getAllAuthors, getAuthorById, deleteAuthorById} = require('../controllers/author.controller');
+const {createAuthor, getAllAuthors, getAuthorById, updateAuthorById, deleteAuthorById} = require('../controllers/author.controller');
 
 // Create a new author
 router.post('/post', createAuthor);

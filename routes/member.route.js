@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {createMember, getAllMembers, getMemberById, deleteMemberById} = require('../controllers/member.controller');
+const {createMember, getAllMembers, getMemberById, updateMemberById, deleteMemberById} = require('../controllers/member.controller');
 
 // Create a new member
 router.post('/post', createMember);

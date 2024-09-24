@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {createBook, getAllBooks, getBookById, deleteBookById} = require('../controllers/book.controller');
+const {createBook, getAllBooks, getBookById, updateBookById, deleteBookById} = require('../controllers/book.controller');
 
 // Create a new book
 router.post('/post', createBook);
