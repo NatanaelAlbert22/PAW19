@@ -12,6 +12,9 @@ router.get('/readmember', getAllMembers);
 // GET member by ID
 router.get('/readmember/:id', getMemberById);
 
+// UPDATE member by ID
+router.put('/updatemember/:id', updateMemberById);
+
 // Delete a book
 router.delete('/delete/:id', deleteMemberById);
 

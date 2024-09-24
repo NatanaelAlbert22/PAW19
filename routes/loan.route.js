@@ -12,6 +12,12 @@ router.get('/readloan', getAllLoans);
 // GET loan by ID
 router.get('/readloan/:id', getLoanById);
 
+// UPDATE author by ID
+router.put('/author/:id', updateAuthorById);
+
+// UPDATE loan by ID
+router.put('/updateloan/:id', updateLoanById);
+
 // Delete a book
 router.delete('/delete/:id', deleteLoanById);
 

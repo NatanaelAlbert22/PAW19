@@ -12,6 +12,9 @@ router.get('/readbook', getAllBooks);
 // GET book by ID
 router.get('/readbook/:id', getBookById);
 
+// UPDATE book by ID
+router.put('/updatebook/:id', updateBookById);
+
 // Delete a book
 router.delete('/delete/:id', deleteBookById);
 

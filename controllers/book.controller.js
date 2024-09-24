@@ -34,6 +34,27 @@ exports.getBookById = async (req, res) => {
     }
 };
 
+// Update book by ID
+exports.updateBookById = async (req, res) =>{
+    const { id } = req.params;
+    const updateData = req.body;
+    try {
+        if (Object.keys(updateData).length === 0) {
+            return res.status(400).json({ message: 'No update data provided' });
+        }
+        const updatedBook = await Book.findByIdAndUpdate(id, updateData, {
+            new: true,
+            runValidators: true
+        });
+        if (!updatedBook) {
+            return res.status(404).json({ message: 'Book not found' });
+        }
+        res.json(updatedBook);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+};
+
 // Delete a book
 exports.deleteBookById = async (req, res) => {
     try {

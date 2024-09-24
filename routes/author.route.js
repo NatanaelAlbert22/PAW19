@@ -11,6 +11,9 @@ router.get('/author', getAllAuthors);
 // GET author by ID
 router.get('/author/:id', getAuthorById);
 
+// UPDATE author by ID
+router.put('/updateauthor/:id', updateAuthorById);
+
 // Delete an author
 router.delete('/delete/:id', deleteAuthorById);
 

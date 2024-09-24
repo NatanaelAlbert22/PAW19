@@ -33,6 +33,27 @@ exports.getLoanById = async (req, res) => {
     }
 };
 
+// Update loan by ID
+exports.updateLoanById = async (req, res) => {
+    const { id } = req.params;
+    const updateData = req.body;
+    try {
+        if (Object.keys(updateData).length === 0) {
+            return res.status(400).json({ message: 'No update data provided' });
+        }
+        const updatedLoan = await Loan.findByIdAndUpdate(id, updateData, {
+            new: true,
+            runValidators: true
+        });
+        if (!updatedLoan) {
+            return res.status(404).json({ message: 'Loan not found' });
+        }
+        res.json(updatedLoan);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+};
+
 // Delete a loan
 exports.deleteLoanById = async (req, res) => {
     try {

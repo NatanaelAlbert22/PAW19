@@ -33,6 +33,27 @@ exports.getMemberById = async (req, res) => {
     }
 };
 
+//UPDATE member by ID
+exports.updateMemberById = async (req, res) => {
+    const { id } = req.params;
+    const updateData = req.body;
+    try {
+        if (Object.keys(updateData).length === 0) {
+            return res.status(400).json({ message: 'No update data provided' });
+        }
+        const updatedMember = await Member.findByIdAndUpdate(id, updateData, {
+            new: true,
+            runValidators: true
+        });
+        if (!updatedMember) {
+            return res.status(404).json({ message: 'Member not found' });
+        }
+        res.json(updatedMember);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+};
+
 // Delete a member
 exports.deleteMemberById = async (req, res) => {
     try {

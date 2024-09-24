@@ -35,6 +35,24 @@ exports.getAuthorById = async (req, res) => {
     }
 };
 
+// UPDATE an author by ID
+exports.updateAuthorById = async (req,res) => {
+    const {id} = req.params;
+    const updateData = req.body;
+    try{
+        const updatedAuthor = await Author.findByIdAndUpdate(id, updateData, {
+            new: true,
+            runValidators: true
+        });
+        if (!updateAuthor) {
+            return res.status(404).json({message: 'Author not found'});
+        }
+        res.json(updateAuthor);
+    } catch(error){
+        res.status(400).json({message: error.message});
+    }
+};
+
 // Delete an author
 exports.deleteAuthorById = async (req, res) => {
     try {
