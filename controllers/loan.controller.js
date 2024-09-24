@@ -33,4 +33,14 @@ exports.getLoanById = async (req, res) => {
     }
 };
 
-
+// Delete a loan
+exports.deleteLoanById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const loan = await Loan.findByIdAndDelete(id);
+        if (!loan) return res.status(404).json({ message: 'Loan not found'});
+        res.status(200).json({ message: "Loan deleted successfully"})
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+}

@@ -33,3 +33,14 @@ exports.getMemberById = async (req, res) => {
     }
 };
 
+// Delete a member
+exports.deleteMemberById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const member = await Member.findByIdAndDelete(id);
+        if (!member) return res.status(404).json({ message: 'Member not found'});
+        res.status(200).json({ message: "Member deleted successfully"})
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+}

@@ -35,7 +35,17 @@ exports.getAuthorById = async (req, res) => {
     }
 };
 
-
+// Delete an author
+exports.deleteAuthorById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const author = await Author.findByIdAndDelete(id);
+        if (!author) return res.status(404).json({ message: 'Author not found'});
+        res.status(200).json({ message: "Author deleted successfully"})
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+}
 
 
 
